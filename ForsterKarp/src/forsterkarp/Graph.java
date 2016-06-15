@@ -25,8 +25,6 @@ public class Graph {
                 i--;
             else{
                 addEdge(l,r,random.nextInt(10)+1);
-                /*adjMatrix[l][r] = random.nextInt(10)+1;
-                adjMatrix[r][l] = adjMatrix[l][r];*/
             }
         }
     }
