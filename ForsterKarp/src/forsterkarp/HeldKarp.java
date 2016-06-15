@@ -3,9 +3,9 @@ package forsterkarp;
 public class HeldKarp {
     
     public int[][] dp;
-    private int[][] adjMatrix;
-    private int numOfNodes;
-    private int numOfSubsets;
+    public int[][] adjMatrix;
+    public int numOfNodes;
+    public int numOfSubsets;
     
     public void initialize (Graph graph){
         adjMatrix = graph.getAdjMatrix();

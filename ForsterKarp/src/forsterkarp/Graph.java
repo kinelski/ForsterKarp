@@ -25,8 +25,6 @@ public class Graph {
                 i--;
             else{
                 addEdge(l,r,random.nextInt(10)+1);
-                /*adjMatrix[l][r] = random.nextInt(10)+1;
-                adjMatrix[r][l] = adjMatrix[l][r];*/
             }
         }
     }
@@ -42,5 +40,14 @@ public class Graph {
     public void addEdge(int node1, int node2, int weight){
         adjMatrix[node1][node2] = weight;
         adjMatrix[node2][node1] = weight;
+    }
+    
+    public void println(){
+        for (int i = 0; i < numOfNodes; i++) {
+            for (int j = 0; j < numOfNodes; j++) {
+                System.out.print(adjMatrix[i][j] + " ");
+            }
+            System.out.print("\n");
+        }
     }
 }
