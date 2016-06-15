@@ -1,7 +1,5 @@
 package forsterkarp;
 
-import java.util.ArrayList;
-
 public class Graph {
     private int numOfNodes;
     private int[][] adjMatrix;
