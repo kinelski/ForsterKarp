@@ -5,6 +5,7 @@ public class ForsterKarp {
         
         Graph graph;
         HeldKarp hk = new HeldKarp();
+        BruteForce bf = new BruteForce();
         
         System.out.println ("CTC-20: Projeto 2");
         System.out.println ("Trabalho feito por:");
@@ -20,6 +21,8 @@ public class ForsterKarp {
             
             hk.initialize(graph);
             System.out.println ("Solução por Held Karp: " + hk.TSP() + "\n");
+            
+            System.out.println("Solução por Força Bruta: " + bf.TSP(graph) +"\n");
         }
         
         System.out.println ("Teste de Desempenho Médio");
