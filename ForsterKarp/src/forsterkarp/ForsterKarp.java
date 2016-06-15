@@ -8,10 +8,14 @@ public class ForsterKarp {
         
         long start, end;
         double av_time, av_memory;
+        double[] time, memory;
         PrintWriter writer = null;
         
         Graph graph;
         HeldKarp hk = new HeldKarp();
+        
+        time = new double[150];
+        memory = new double[50];
         
         try{
             writer = new PrintWriter ("out.txt", "UTF-8");
@@ -54,10 +58,25 @@ public class ForsterKarp {
             av_time = (end - start)/10.0;
             av_memory /= 10.0;
             
+            time[i] = av_time;
+            memory[i] = av_memory;
+            
             System.out.print (i + " vértices: ");
             System.out.print (av_time + " ms, ");
             System.out.println (av_memory + " bytes");
         }
+        
+        writer.println ("Teste com grafo completo (n=3 até n=20):");
+        
+        writer.print ("Tempo: [" + time[3]);
+        for (int i=4; i<=20; i++)
+            writer.print (" " + time[i]);
+        writer.println("]");
+        
+        writer.print ("Memória: [" + memory[3]);
+        for (int i=4; i<=20; i++)
+            writer.print (" " + memory[i]);
+        writer.println("]");
         
         System.out.println ("\nDe 1 a 120 arestas (16 vértices):");
         for (int i=1; i<=120; i++){
@@ -73,9 +92,18 @@ public class ForsterKarp {
             end = (new Date()).getTime();
             av_time = (end - start)/10.0;
             
+            time[i] = av_time;
+            
             System.out.println (i + " arestas: " + av_time + " ms");
             
         }
+        
+        writer.println ("Teste com quantidade de vértices fixa (m=1 até m=120):");
+        
+        writer.print ("Tempo: [" + time[1]);
+        for (int i=2; i<=120; i++)
+            writer.print (" " + time[i]);
+        writer.println("]");
         
         if (writer != null)
             writer.close();
