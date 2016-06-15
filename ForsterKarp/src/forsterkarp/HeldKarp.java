@@ -2,17 +2,22 @@ package forsterkarp;
 
 public class HeldKarp {
     
-    public int[][] dp;
-    public int[][] adjMatrix;
-    public int numOfNodes;
-    public int numOfSubsets;
+    private int[][] dp;
+    private int[][] adjMatrix;
+    private int numOfNodes;
+    private int numOfSubsets;
+    private int allocatedMemory;
     
     public void initialize (Graph graph){
+        allocatedMemory = 0;
+        
         adjMatrix = graph.getAdjMatrix();
         numOfNodes = graph.getNumOfNodes();
         numOfSubsets = (1 << numOfNodes);
+        allocatedMemory += 4*numOfNodes*numOfNodes + 4 + 4;
         
         dp = new int[numOfNodes][numOfSubsets];
+        allocatedMemory += 4*numOfNodes*numOfSubsets;
         
         for (int i=0; i<numOfNodes; i++)
             for (int j=0; j<numOfSubsets; j++)
@@ -38,6 +43,8 @@ public class HeldKarp {
             if (i != pos && isBitSet(bitmask, i)){
                 
                 int prev = TSP(i, resetBit(bitmask, i));
+                allocatedMemory += 4;
+                
                 if (prev < 0 || adjMatrix[pos][i] < 0) prev = -1;
                 else prev += adjMatrix[pos][i];
                 
@@ -52,6 +59,10 @@ public class HeldKarp {
     
     public int TSP (){
         return TSP(0, numOfSubsets-2);
+    }
+    
+    public int getAllocatedMemory(){
+        return allocatedMemory;
     }
     
 }
